@@ -1,0 +1,29 @@
+================================================================================
+  LRU CACHE  -  SECTION 2: EVICTION WALKTHROUGH                   capacity = 3
+================================================================================
+
+  cache = Cache(3)
+
+  STEP  OPERATION            RETURNED  EVICTED  CACHE AFTER (MRU -> LRU)
+  ----  -------------------  --------  -------  ---------------------------
+     1  put("A", 10)         -         -        A=10
+     2  put("B", 20)         -         -        B=20, A=10
+     3  put("C", 30)         -         -        C=30, B=20, A=10
+     4  get("A")             10        -        A=10, C=30, B=20
+        >>> "A" jumps to the front; "B" is now least-recently-used.
+     5  put("D", 40)         -         B        D=40, A=10, C=30
+        >>> EVICTED "B" -- it was the least-recently-used entry,
+            and the cache was full (size 3 of capacity 3).
+     6  put("C", 99)         -         -        C=99, D=40, A=10
+        >>> NO EVICTION: "C" already existed, so put() updated it
+            in place. An update never costs a capacity slot.
+     7  get("Z")             -1        -        C=99, D=40, A=10
+        >>> A MISS IS INERT: nothing was promoted, so the order above
+            is unchanged and the next victim is still "A".
+     8  put("E", 50)         -         A        E=50, C=99, D=40
+        >>> EVICTED "A" -- it was the least-recently-used entry,
+            and the cache was full (size 3 of capacity 3).
+  ----  -------------------  --------  -------  ---------------------------
+
+  stats: hits=1 misses=1 evictions=2 expirations=0 size=3 capacity=3
+

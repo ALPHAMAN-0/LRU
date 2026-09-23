@@ -1,0 +1,122 @@
+[
+  {
+    "name": "01_assignment_example",
+    "caption": "put(), get(), LRU eviction and every returned value",
+    "png": "photo/01_assignment_example.png",
+    "txt": "photo/01_assignment_example.txt",
+    "command": "python3 demo.py --section basic",
+    "method": "headless-chrome",
+    "stdout_sha256": "5ff2c42453e333244c0f76de24bf94c2c0ede6e2ae340f56c97bc084fff450fe",
+    "stdout_lines": 27,
+    "png_sha256": "56f43aff83b308e66db9c440dc92aa4dabbd844baa610b9db92f12f0d18dbd37",
+    "validator": {
+      "size": [
+        1800,
+        1339
+      ],
+      "bg_match": 0.8935,
+      "stddev": 36.66,
+      "distinct_colors": 566,
+      "body_ink": 0.0527,
+      "text_rows": 25,
+      "expected_lines": 27,
+      "failed_checks": [],
+      "ok": true
+    },
+    "paths_attempted": [
+      "terminal: skipped (Screen Recording unavailable: could not create image from rect)"
+    ],
+    "captured_at_utc": "2026-09-23T08:36:57+00:00",
+    "python": "3.14.6"
+  },
+  {
+    "name": "02_eviction_walkthrough",
+    "caption": "recency promotion, update-without-eviction, and an inert miss",
+    "png": "photo/02_eviction_walkthrough.png",
+    "txt": "photo/02_eviction_walkthrough.txt",
+    "command": "python3 demo.py --section eviction",
+    "method": "headless-chrome",
+    "stdout_sha256": "234afd97f87f2af8900e60aff3c0c5935fa48b3d3cd46a69cfce4d164d1fa2e5",
+    "stdout_lines": 29,
+    "png_sha256": "974fce05e0777af408fd33658dba24a0234b6d80d2d3e4729bc79bd6c1fbcf01",
+    "validator": {
+      "size": [
+        1800,
+        1426
+      ],
+      "bg_match": 0.8899,
+      "stddev": 39.02,
+      "distinct_colors": 563,
+      "body_ink": 0.0601,
+      "text_rows": 28,
+      "expected_lines": 29,
+      "failed_checks": [],
+      "ok": true
+    },
+    "paths_attempted": [
+      "terminal: skipped (Screen Recording unavailable: could not create image from rect)"
+    ],
+    "captured_at_utc": "2026-09-23T08:36:59+00:00",
+    "python": "3.14.6"
+  },
+  {
+    "name": "03_ttl_expiration",
+    "caption": "TTL expiration on an injected deterministic clock",
+    "png": "photo/03_ttl_expiration.png",
+    "txt": "photo/03_ttl_expiration.txt",
+    "command": "python3 demo.py --section ttl",
+    "method": "headless-chrome",
+    "stdout_sha256": "faf4f7700690606269dd3d95a9cc97863d660d56303f674cfcceccaa58e9750e",
+    "stdout_lines": 45,
+    "png_sha256": "85773bb9899debd51c0fc0b25cc7bd02903881ea131c056e45acb56c64e728ed",
+    "validator": {
+      "size": [
+        1800,
+        2122
+      ],
+      "bg_match": 0.9067,
+      "stddev": 39.55,
+      "distinct_colors": 567,
+      "body_ink": 0.0596,
+      "text_rows": 41,
+      "expected_lines": 45,
+      "failed_checks": [],
+      "ok": true
+    },
+    "paths_attempted": [
+      "terminal: skipped (Screen Recording unavailable: could not create image from rect)"
+    ],
+    "captured_at_utc": "2026-09-23T08:37:02+00:00",
+    "python": "3.14.6"
+  },
+  {
+    "name": "04_unit_tests",
+    "caption": "the full test suite passing",
+    "png": "photo/04_unit_tests.png",
+    "txt": "photo/04_unit_tests.txt",
+    "command": "python3 -m unittest",
+    "method": "headless-chrome",
+    "stdout_sha256": "79bdcf9a58a6a707ca9d1782d70e74641ec1792fe426cbc222c015911963f796",
+    "stdout_lines": 5,
+    "png_sha256": "7dbcdb69947430260c888af9ab06716993c77e55ce6f635645e6b6592223a0f6",
+    "validator": {
+      "size": [
+        1800,
+        382
+      ],
+      "bg_match": 0.7849,
+      "stddev": 23.14,
+      "distinct_colors": 556,
+      "body_ink": 0.0202,
+      "text_rows": 5,
+      "expected_lines": 5,
+      "failed_checks": [],
+      "ok": true
+    },
+    "paths_attempted": [
+      "terminal: skipped (Screen Recording unavailable: could not create image from rect)"
+    ],
+    "captured_at_utc": "2026-09-23T08:37:09+00:00",
+    "python": "3.14.6"
+  }
+]

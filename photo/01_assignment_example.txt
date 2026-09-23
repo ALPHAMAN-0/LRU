@@ -1,0 +1,27 @@
+================================================================================
+  LRU CACHE  -  SECTION 1: ASSIGNMENT EXAMPLE                     capacity = 2
+================================================================================
+
+  cache = Cache(2)
+
+  STEP  OPERATION            RETURNED  EVICTED  CACHE AFTER (MRU -> LRU)
+  ----  -------------------  --------  -------  ---------------------------
+     1  put("A", 10)         -         -        A=10
+     2  put("B", 20)         -         -        B=20, A=10
+     3  get("A")             10        -        A=10, B=20
+        >>> HIT: "A" is returned AND promoted to most-recently-used,
+            so "B" is now the eviction candidate.
+     4  put("C", 30)         -         B        C=30, A=10
+        >>> EVICTED "B" -- it was the least-recently-used entry,
+            and the cache was full (size 2 of capacity 2).
+     5  get("B")             -1        -        C=30, A=10
+        >>> MISS: "B" was evicted, so get() returns the sentinel -1.
+     6  get("C")             30        -        C=30, A=10
+     7  get("A")             10        -        A=10, C=30
+  ----  -------------------  --------  -------  ---------------------------
+
+  SPEC CHECK  expected returns: 10, -1, 30, 10
+              actual   returns: 10, -1, 30, 10        [PASS]
+
+  stats: hits=3 misses=1 evictions=1 expirations=0 size=2 capacity=2
+

@@ -1,0 +1,45 @@
+================================================================================
+  LRU CACHE  -  SECTION 3: TTL / EXPIRATION                   optional feature
+================================================================================
+
+  clock = FakeClock(0.0)        # injected, so this run is repeatable
+  cache = Cache(3, default_ttl=5.0, time_fn=clock)
+
+  TIME  OPERATION                     RETURNED  NOTE
+  ----  ----------------------------  --------  ----------------------------
+   0.0  put("session:1", "alice")     -         expires at t=5.0
+   0.0  get("session:1")              "alice"   age 0.0s of 5.0s TTL
+   4.9  get("session:1")              "alice"   age 4.9s of 5.0s TTL
+   5.0  get("session:1")              -1        EXPIRED (5.0 >= 5.0 deadline)
+  ----  ----------------------------  --------  ----------------------------
+
+  >>> The entry was reclaimed lazily on that read: size is now 0 and
+      stats.expirations is now 1. get() still ran in O(1).
+
+  ----------------------------------------------------------------------------
+  Per-key TTL, and an entry that opts out of the default entirely
+  ----------------------------------------------------------------------------
+  TIME  OPERATION                     RETURNED  NOTE
+  ----  ----------------------------  --------  ----------------------------
+   0.0  put("short", 1)               -         expires at t=5.0
+   0.0  put("long", 2, ttl=100.0)     -         expires at t=100.0
+   0.0  put("forever", 3, ttl=None)   -         never expires (opts out)
+   6.0  get("short")                  -1        EXPIRED at t=5.0
+   6.0  get("long")                   2         alive until t=100.0
+   6.0  get("forever")                3         no deadline was ever set
+  ----  ----------------------------  --------  ----------------------------
+
+  ----------------------------------------------------------------------------
+  len() vs `in`: a capacity question and a liveness question
+  ----------------------------------------------------------------------------
+    After the TTL passes, but before anything reads the key:
+      len(cache)        -> 1   (it still occupies a capacity slot)
+      'ghost' in cache  -> False   (a lookup would not find it)
+      cache.keys()      -> []
+    purge_expired() sweeps them out on demand:
+      cache.purge_expired() -> 1
+      len(cache)            -> 0
+
+  This asymmetry is deliberate: keeping len() O(1) is worth more than
+  making it liveness-exact, which would cost an O(n) scan per call.
+

@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+.venv/
+venv/
+
+# photo/ is a deliverable -- it is intentionally NOT ignored.
