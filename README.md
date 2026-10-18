@@ -5,6 +5,18 @@ A Least Recently Used cache with `Cache(capacity)`, `get(key)` and
 operations run in **O(1) amortised** time. Optional **TTL / expiration** is
 included. Python 3.9+, standard library only — nothing to install.
 
+## Architecture / How it Works
+
+```mermaid
+flowchart LR
+    A[User] --> B[LRU]
+    B --> C{Logic}
+    C --> D[(Data)]
+    C --> E[Output]
+    D --> C
+```
+
+
 ```python
 from lru_cache import Cache
 
