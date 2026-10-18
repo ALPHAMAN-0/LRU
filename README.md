@@ -9,9 +9,12 @@ included. Python 3.9+, standard library only — nothing to install.
 
 ```mermaid
 flowchart LR
-    User --> Entry[Entry point]
-    Entry --> Logic[Application logic]
-    Logic --> Output[Output]
+    Client[Caller] --> Cache[LRU Cache]
+    Cache --> Map[HashMap: key → Node]
+    Cache --> DLL[Doubly linked list]
+    Map -. lookup .-> DLL
+    DLL -. evict LRU .-> Cache
+    Cache --> TTL[Optional TTL check]
 ```
 
 
