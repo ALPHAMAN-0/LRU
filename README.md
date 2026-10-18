@@ -9,11 +9,9 @@ included. Python 3.9+, standard library only — nothing to install.
 
 ```mermaid
 flowchart LR
-    A[User] --> B[LRU]
-    B --> C{Logic}
-    C --> D[(Data)]
-    C --> E[Output]
-    D --> C
+    User --> Entry[Entry point]
+    Entry --> Logic[Application logic]
+    Logic --> Output[Output]
 ```
 
 
