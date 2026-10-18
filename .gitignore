@@ -6,3 +6,5 @@ __pycache__/
 venv/
 
 # photo/ is a deliverable -- it is intentionally NOT ignored.
+config.bat
+node_modules
